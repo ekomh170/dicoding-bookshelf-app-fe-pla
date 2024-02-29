@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const book = document.createElement("article");
     book.classList.add("book_item");
     book.dataset.bookid = id; // Set data-bookid attribute
+
+    year = Number(year); // Mengubah tahun tipe data menjadi Number
+
     // Mengatur isi HTML untuk tampilan buku
     book.innerHTML = `
       <h3>${title}</h3>
@@ -56,17 +59,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fungsi untuk menambahkan buku baru
   function addBook(title, author, year, isComplete) {
     const timestamp = +new Date();
-    
+
     const book = {
       id: timestamp,
       title: title,
       author: author,
-      // Mengubah tahun tipe data menjadi number
-      year: parseInt(year),
+      year: Number(year), // Mengubah tahun menjadi angka dengan Number
       isComplete: isComplete,
     };
 
-    const bookElement = makeBook(timestamp, title, author, year, isComplete);
+    const bookElement = makeBook(
+      timestamp,
+      title,
+      author,
+      Number(year),
+      isComplete
+    ); // Menggunakan Number(year) di sini
     addBookToShelf(bookElement, isComplete);
     updateLocalStorage();
   }
@@ -91,13 +99,15 @@ document.addEventListener("DOMContentLoaded", function () {
       .classList.contains("green");
 
     const statusButton = bookElement.querySelector(".action button");
-    statusButton.textContent = isComplete ? "Belum selesai di Baca" : "Selesai dibaca";
+    statusButton.textContent = isComplete
+      ? "Belum selesai di Baca"
+      : "Selesai dibaca";
     statusButton.classList.toggle("green");
     statusButton.classList.toggle("red");
-  
+
     const shelf = isComplete ? completeBookshelfList : incompleteBookshelfList;
     shelf.appendChild(bookElement);
-  
+
     updateLocalStorage();
   }
 
@@ -113,9 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const author = book
         .querySelector("p:nth-of-type(1)")
         .innerText.split(": ")[1];
-      const year = book
-        .querySelector("p:nth-of-type(2)")
-        .innerText.split(": ")[1];
+      const year = Number(
+        book.querySelector("p:nth-of-type(2)").innerText.split(": ")[1]
+      ); // Konversi tahun ke angka di sini
       const isComplete = false;
       incompleteBooks.push({ id, title, author, year, isComplete });
     });
@@ -127,9 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const author = book
         .querySelector("p:nth-of-type(1)")
         .innerText.split(": ")[1];
-      const year = book
-        .querySelector("p:nth-of-type(2)")
-        .innerText.split(": ")[1];
+      const year = Number(
+        book.querySelector("p:nth-of-type(2)").innerText.split(": ")[1]
+      ); // Konversi tahun ke angka di sini
       const isComplete = true;
       completeBooks.push({ id, title, author, year, isComplete });
     });
@@ -144,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     const title = inputBookTitle.value;
     const author = inputBookAuthor.value;
-    const year = inputBookYear.value;
+    const year = Number(inputBookYear.value); // atau Number(inputBookYear.value)
     const isComplete = inputBookIsComplete.checked;
     addBook(title, author, year, isComplete);
     inputBookForm.reset();
@@ -190,12 +200,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const completeBooks =
       JSON.parse(localStorage.getItem("completeBooks")) || [];
 
+    // Menyimpan data ke penyimpanan lokal sebagai string JSON
+    console.log("Data yang akan disimpan pada penyimpanan lokal:");
+    console.log("Incomplete Books:", incompleteBooks);
+    console.log("Complete Books:", completeBooks);
+
     incompleteBooks.forEach((book) => {
       const bookElement = makeBook(
         book.id,
         book.title,
         book.author,
-        book.year,
+        Number(book.year), // Mengonversi tahun ke tipe data angka di sini
         book.isComplete
       );
       addBookToShelf(bookElement, false);
@@ -206,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
         book.id,
         book.title,
         book.author,
-        book.year,
+        Number(book.year), // Mengonversi tahun ke tipe data angka di sini
         book.isComplete
       );
       addBookToShelf(bookElement, true);
