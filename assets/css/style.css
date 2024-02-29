@@ -14,9 +14,25 @@ body, input, button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: cornflowerblue;
+    background-color: grey;
     color: white;
 }
+
+.head_bar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.head_bar .logo img {
+    width: 50px; /* Adjust the width as needed */
+    margin-right: 15px; /* Adjust the spacing as needed */
+    border-radius: 50%;
+}
+
+.head_bar__title {
+    margin: 0; /* Reset margin for the title */
+}
+
 
 main {
     max-width: 800px;
@@ -35,7 +51,7 @@ main {
 
 .input_section > h2 {
     text-align: center;
-    color: cornflowerblue;
+    color: grey;
 }
 
 .input_section > form > .input {
@@ -43,7 +59,7 @@ main {
 }
 
 .input_section > form > button {
-    background-color: cornflowerblue;
+    background-color: grey;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -65,7 +81,7 @@ main {
 }
 
 .input_section > form > .input > label {
-    color: cornflowerblue;
+    color: grey;
     font-weight: bold;
 }
 
@@ -76,7 +92,7 @@ main {
 }
 
 .input_section > form > .input_inline > label {
-    color: cornflowerblue;
+    color: grey;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -92,7 +108,7 @@ main {
 }
 
 .search_section > h2 {
-    color: cornflowerblue;
+    color: grey;
 }
 
 .search_section > form {
@@ -114,7 +130,7 @@ main {
 }
 
 .search_section > form > button {
-    background-color: cornflowerblue;
+    background-color: grey;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -129,7 +145,7 @@ main {
 }
 
 .book_shelf > h2 {
-    color: cornflowerblue;
+    color: grey;
 }
 
 .book_shelf > .book_list {
