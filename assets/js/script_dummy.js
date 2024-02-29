@@ -14,7 +14,7 @@ function addDummyData(addBook) {
     ];
   
     dummyBooks.forEach((book) => {
-      addBook(book.title, book.author, book.year, bok.iComplete);
+      addBook(book.title, book.author, book.year, book.isComplete);
     });
   }
   
