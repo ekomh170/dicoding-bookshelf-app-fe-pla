@@ -1,15 +1,12 @@
+body, input, button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-body, input, button {
-    font-family: 'Open Sans', sans-serif;
-}
-
-input, button {
-    font-size: 16px;
 }
 
 .head_bar {
@@ -26,7 +23,6 @@ main {
     width: 80%;
     margin: 0 auto;
     padding: 16px;
-
 }
 
 .input_section {
@@ -67,7 +63,6 @@ main {
     padding: 8px;
     border-radius: 5px;
 }
-
 
 .input_section > form > .input > label {
     color: cornflowerblue;
@@ -168,4 +163,35 @@ main {
 .book_shelf > .book_list > .book_item > .action > .red {
     background-color: darkred;
     color: white;
+}
+
+.additional_features {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.additional_features > button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.additional_features > button:hover {
+    background-color: crimson;
+}
+
+@media only screen and (max-width: 768px) {
+    main {
+        width: 90%;
+    }
+
+    .search_section > form {
+        grid-template-columns: 1fr;
+    }
 }
