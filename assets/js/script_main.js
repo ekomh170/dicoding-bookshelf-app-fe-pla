@@ -56,13 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fungsi untuk menambahkan buku baru
   function addBook(title, author, year, isComplete) {
     const timestamp = +new Date();
+    
     const book = {
       id: timestamp,
       title: title,
       author: author,
-      year: year,
+      // Mengubah tahun tipe data menjadi number
+      year: parseInt(year),
       isComplete: isComplete,
     };
+
     const bookElement = makeBook(timestamp, title, author, year, isComplete);
     addBookToShelf(bookElement, isComplete);
     updateLocalStorage();
@@ -86,8 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const isComplete = !bookElement
       .querySelector(".action button")
       .classList.contains("green");
+
+    const statusButton = bookElement.querySelector(".action button");
+    statusButton.textContent = isComplete ? "Belum selesai di Baca" : "Selesai dibaca";
+    statusButton.classList.toggle("green");
+    statusButton.classList.toggle("red");
+  
     const shelf = isComplete ? completeBookshelfList : incompleteBookshelfList;
     shelf.appendChild(bookElement);
+  
     updateLocalStorage();
   }
 
